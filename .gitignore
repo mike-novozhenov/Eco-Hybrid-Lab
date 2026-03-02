@@ -33,3 +33,6 @@ allure-report/
 
 # --- Docker ---
 .docker/
+
+# --- Private Notes & Drafts ---
+NOTES/
