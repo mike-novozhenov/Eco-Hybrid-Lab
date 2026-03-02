@@ -1,0 +1,35 @@
+# --- IDE & System ---
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# --- Python & Environment ---
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+
+# --- Secrets & Configs ---
+.env
+.env.local
+
+# --- Playwright & Automation ---
+test-results/
+playwright-report/
+blob-report/
+.last_run_state
+
+# --- Visual Testing ---
+*-snapshots/failed/
+*-snapshots/diff/
+
+# --- Reporting (Allure) ---
+allure-results/
+allure-report/
+
+# --- Docker ---
+.docker/
