@@ -19,6 +19,7 @@ def test_full_checkout_flow(page, login_page: LoginPage, product_page, cart_page
     """
 
     # --- STEP 1: LOGIN ---
+    page.goto("https://www.demoblaze.com/")
     with allure.step("Step 1: Login to the system"):
         # We now use the specialized LoginPage class
         login_page.open_modal()

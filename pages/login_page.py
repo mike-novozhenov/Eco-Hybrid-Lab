@@ -13,6 +13,8 @@ class LoginPage:
     @allure.step("Open Login modal window")
     def open_modal(self):
         """Clicks the login link in the header and waits for the modal to appear"""
+        self.login_menu_link.wait_for(state="visible", timeout=5000)
+        """Clicks the login link in the header and waits for the modal to appear"""
         self.login_menu_link.click()
         # Ensure the modal is visible before interaction
         self.username_input.wait_for(state="visible", timeout=5000)
