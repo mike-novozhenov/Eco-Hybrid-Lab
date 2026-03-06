@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Hybrid-Lab: Architecture & Scenarios</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            max-width: 92%;
+            margin: 0 auto;
+        }
+        h1 { color: #1a202c; border-bottom: 3px solid #3498db; padding-bottom: 10px; margin-bottom: 10px; }
+        .subtitle { font-size: 1.2em; color: #718096; margin-bottom: 30px; }
+
+        h2 { margin-top: 40px; border-bottom: 1px solid #edf2f7; padding-bottom: 10px; font-size: 1.6em; }
+        .pos { color: #2f855a; }
+        .neg { color: #c53030; }
+
+        .perf-container { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .perf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px; }
+        .perf-item { font-size: 0.9em; padding: 10px; background: #f8fafc; border-radius: 6px; }
+        .perf-item strong { color: #2d3748; }
+
+        .allure-img { width: 100%; max-width: 1000px; border-radius: 8px; margin: 15px 0; border: 1px solid #edf2f7; display: block; }
+
+        details { background: #edf2f7; padding: 15px; border-radius: 8px; margin: 15px 0; cursor: pointer; }
+        details summary { font-weight: bold; color: #2d3748; }
+        .trace-img { max-width: 100%; border-radius: 6px; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+        .dna-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .dna-card { background: #f8fafc; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db; }
+        .dna-card strong { color: #2d3748; display: block; margin-bottom: 5px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.92em; table-layout: fixed; }
+        th { background-color: #edf2f7; color: #2d3748; text-align: left; padding: 14px; border: 1px solid #e2e8f0; }
+        td { padding: 14px; border: 1px solid #e2e8f0; vertical-align: top; word-wrap: break-word; }
+        tr:nth-child(even) { background-color: #fcfcfc; }
+
+        .badge-turbo { background: #ed8936; color: white; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 0.75em; text-transform: uppercase; }
+
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 20px 0; }
+        .tech-stack li { background: #2d3748; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; }
+
+        .structure-block { background: #2d3748; color: #a0aec0; padding: 25px; border-radius: 8px; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; overflow-x: auto; line-height: 1.6; }
+        .structure-block span { color: #63b3ed; font-weight: bold; }
+
+        blockquote { border-left: 4px solid #3498db; margin: 20px 0; padding: 10px 20px; background: #ebf8ff; color: #2c5282; border-radius: 0 8px 8px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Eco-Hybrid-Lab</h1>
+        <p class="subtitle">Hybrid Test Automation Framework: UI • API • Database</p>
+
+        <p>This project demonstrates a hybrid approach to test automation, integrating UI, API, and Database layers into a single, scalable framework</p>
+
+        <div class="perf-container">
+            <h2>📊 Performance & Observability</h2>
+            <img src="graphs.jpg" alt="Allure Report Dashboard" class="allure-img">
+            <p><i>Summary: 100% Pass Rate | 10 Tests | ~27s Total Duration</i></p>
+
+            <div class="perf-grid">
+                <div class="perf-item"><strong>API/DB Layer (&lt; 1s):</strong> High-speed integration checks using requests and SQL direct access</div>
+                <div class="perf-item"><strong>UI Resilience (2s - 4s):</strong> Rapid UI feedback via resource blocking and native event listeners</div>
+                <div class="perf-item"><strong>Full E2E Flows (8s - 9s):</strong> Stable business logic validation using the POM pattern</div>
+            </div>
+
+            <details>
+                <summary>🔍 Deep Traceability Example (Click to expand)</summary>
+                <br>
+                <p>For the <strong>API to DB Sync</strong> scenario, the report captures every internal step with raw data evidence:</p>
+                <ul>
+                    <li><strong>POST Request:</strong> Resource creation verified in 431ms</li>
+                    <li><strong>DB Logging:</strong> Action recorded via SQLAlchemy in 16ms</li>
+                    <li><strong>Data Audit:</strong> Direct SQL SELECT verifies persistence: <code>(1, 'Create post...', 'Success')</code></li>
+                    <li><strong>Auto-Cleanup:</strong> Environment reset via Tear down fixtures automatically</li>
+                </ul>
+                <img src="traceability.jpg" alt="Deep Traceability" class="trace-img">
+            </details>
+
+            <blockquote>
+                <strong>Key Takeaway:</strong> By utilizing a hybrid approach, 80% of the test suite provides feedback in under 4 seconds, significantly reducing CI/CD pipeline costs
+            </blockquote>
+        </div>
+
+        <h2 class="pos">🟢 Positive Scenarios (Happy Path)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Scenario</th>
+                    <th style="width: 10%;">Layer</th>
+                    <th style="width: 30%;">Technical Highlights & Patterns</th>
+                    <th style="width: 25%;">Validation & Data Handling</th>
+                    <th style="width: 20%;">Risk Mitigated</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>E2E Shopping Flow</strong></td>
+                    <td>Hybrid</td>
+                    <td><strong>POM</strong>, Session persistence, API-driven preconditions</td>
+                    <td>UI State + URL verification; Real-time session auth</td>
+                    <td>Broken conversion funnel</td>
+                </tr>
+                <tr>
+                    <td><strong>API Data Contract</strong></td>
+                    <td>API</td>
+                    <td>Type checking (ID as int), header validation</td>
+                    <td>JSON Schema; Status 201; Header integrity</td>
+                    <td>Integration mismatches</td>
+                </tr>
+                <tr>
+                    <td><strong>API to DB Sync</strong></td>
+                    <td>API + DB</td>
+                    <td><strong>Singleton DB Client</strong>, Automated SQL Teardown</td>
+                    <td>Cross-layer integrity (SQL SELECT match)</td>
+                    <td>Silent data loss in backend</td>
+                </tr>
+                <tr>
+                    <td><strong>Add to Cart</strong></td>
+                    <td>UI</td>
+                    <td>Dynamic dialog handling, <code>wait_for_selector</code> logic</td>
+                    <td>Cart persistence; Alert automation</td>
+                    <td>UI/Logic synchronization</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="neg">🔴 Negative Scenarios (Resilience & Edge Cases)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Scenario</th>
+                    <th style="width: 10%;">Layer</th>
+                    <th style="width: 30%;">Technical Highlights & Patterns</th>
+                    <th style="width: 25%;">Validation & Data Handling</th>
+                    <th style="width: 20%;">Risk Mitigated</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Empty Checkout</strong></td>
+                    <td>UI</td>
+                    <td><span class="badge-turbo">Turbo Mode</span> Asset blocking, 3.7s speed, <code>dispatch_event</code></td>
+                    <td>Alert Interception; No-wait actionability</td>
+                    <td>UI validation bypass</td>
+                </tr>
+                <tr>
+                    <td><strong>Broken Links Audit</strong></td>
+                    <td>UI / API</td>
+                    <td><strong>Multi-threading:</strong> 11 parallel workers, HEAD requests</td>
+                    <td>HTTP Status 200/300; Concurrent discovery</td>
+                    <td>Negative SEO & Dead UX</td>
+                </tr>
+                <tr>
+                    <td><strong>Auth Resilience</strong></td>
+                    <td>UI</td>
+                    <td><strong>Event-driven:</strong> <code>expect_event("dialog")</code> (No <code>sleep</code>)</td>
+                    <td>Regex alert text match; Dynamic waiting</td>
+                    <td>Flaky tests / Async race conditions</td>
+                </tr>
+                <tr>
+                    <td><strong>Malformed API Data</strong></td>
+                    <td>API</td>
+                    <td>Schema resilience, Type-mismatch payloads</td>
+                    <td>JSON Contract; Documentation of server flaws</td>
+                    <td>Backend crashes on bad input</td>
+                </tr>
+                <tr>
+                    <td><strong>API Failure Logs</strong></td>
+                    <td>API + DB</td>
+                    <td>Integrated Error Logging (404 -> DB)</td>
+                    <td>Status code mapping to SQL audit logs</td>
+                    <td>Untraceable system errors</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🛠 Engineering DNA (Best Practices)</h2>
+        <div class="dna-grid">
+            <div class="dna-card">
+                <strong>Zero-Sleep Policy</strong>
+                No static timeouts. All asynchronous states are handled via Playwright's native event listeners and smart assertions
+            </div>
+            <div class="dna-card">
+                <strong>Extreme Performance</strong>
+                Optimized execution through strategic resource blocking and multi-threaded processing
+            </div>
+            <div class="dna-card">
+                <strong>Deep Observability</strong>
+                Automated Allure reporting with integrated screenshots, browser trace logs, and SQL snapshots
+            </div>
+            <div class="dna-card">
+                <strong>Clean State Management</strong>
+                Singleton-based database connectivity with automated transaction teardowns for environment purity
+            </div>
+        </div>
+
+        <h2>🚀 Tech Stack</h2>
+        <ul class="tech-stack">
+            <li>Python 3.13</li>
+            <li>Playwright (Chromium)</li>
+            <li>Pytest</li>
+            <li>SQLAlchemy</li>
+            <li>SQLite3</li>
+            <li>Allure Reports</li>
+            <li>Python-dotenv</li>
+        </ul>
+
+        <h2>📂 Project Structure</h2>
+        <div class="structure-block">
+            . (root)<br>
+            ├── <span>data/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Test data and DB initialization<br>
+            ├── <span>pages/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Page Object Models (UI layer)<br>
+            ├── <span>tests/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Test suites (UI, API, Integration)<br>
+            ├── <span>utils/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# API clients, DB wrappers, Loggers<br>
+            ├── <span>docs/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Documentation and static assets<br>
+            │ &nbsp;&nbsp;├── <span>README.html</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# This architecture report<br>
+            │ &nbsp;&nbsp;└── <span>*.jpg</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Report screenshots<br>
+            ├── <span>.env.example</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Environment variables template<br>
+            ├── <span>pytest.ini</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Test runner configuration<br>
+            └── <span>requirements.txt</span> &nbsp;&nbsp;# Project dependencies
+        </div>
+    </div>
+</body>
+</html>
