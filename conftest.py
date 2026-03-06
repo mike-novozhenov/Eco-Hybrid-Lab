@@ -11,7 +11,7 @@ from pages.login_page import LoginPage
 from utils.api_client import ApiClient
 from utils.db_client import DbClient
 
-# Load environment variables
+# Загружаем переменные окружения
 load_dotenv()
 
 @pytest.fixture(scope="function")
@@ -55,7 +55,7 @@ def cleanup_after_test(request):
     """
     yield
 
-    # Safe access to the page fixture via funcargs
+    # Безопасный доступ к фикстуре page через funcargs
     page = request.node.funcargs.get("page")
 
     if page and not page.is_closed():
@@ -65,7 +65,7 @@ def cleanup_after_test(request):
                 page.evaluate("window.localStorage.clear()")
                 page.evaluate("window.sessionStorage.clear()")
         except (RuntimeError, AttributeError):
-            # Перечисляем конкретные ошибки вместо общего Exception,
+            # Ловим только технические ошибки обращения к закрытой странице,
             # чтобы IDE не ругалась на 'too broad exception'
             pass
 
@@ -76,7 +76,7 @@ def db_client():
     """
     client = DbClient("test_database.db")
     # Создаем таблицу, если её нет.
-    # Комментарий ниже помогает IDE понять диалект SQL (language=SQL)
+    # language=SQL
     client.execute_query(
         "CREATE TABLE IF NOT EXISTS test_logs (id INTEGER PRIMARY KEY, action TEXT, status TEXT)"
     )
@@ -94,7 +94,7 @@ def pytest_runtest_makereport(item):
     report = outcome.get_result()
 
     if report.when == "call" and report.failed:
-        # Retrieve the page instance from test arguments
+        # Извлекаем экземпляр страницы из аргументов теста
         page = item.funcargs.get("page")
         if page:
             allure.attach(
