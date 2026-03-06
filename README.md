@@ -1,5 +1,9 @@
 # Eco-Hybrid-Lab: Hybrid Test Automation Framework
 
+[![Hybrid Tests Execution](https://github.com/mike-novozhenov/Eco-Hybrid-Lab/actions/workflows/tests.yml/badge.svg)](https://github.com/mike-novozhenov/Eco-Hybrid-Lab/actions/workflows/tests.yml)
+[![View Allure Report](https://img.shields.io/badge/Allure%20Report-View-green?style=flat&logo=allure)](https://mike-novozhenov.github.io/Eco-Hybrid-Lab/)
+---
+
 ## Project Overview
 This project demonstrates a hybrid approach to test automation, integrating UI, API, and Database layers into a single, scalable framework.
 
