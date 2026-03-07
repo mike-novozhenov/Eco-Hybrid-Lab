@@ -45,7 +45,9 @@ jobs:
 
       - name: Inject Architecture Report
         if: always()
-        run: cp architecture.html allure-history/architecture.html
+        run: |
+          sudo chmod -R 777 allure-history
+          cp architecture.html allure-history/architecture.html
 
       - name: Deploy report to Github Pages
         if: always()
