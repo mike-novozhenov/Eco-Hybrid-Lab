@@ -50,12 +50,7 @@ def test_full_checkout_flow(page, login_page: LoginPage, product_page, cart_page
 
     # --- STEP 4: SUBMIT PURCHASE FORM ---
     with allure.step("Step 4: Submit purchase form"):
-        checkout_page.submit_order(
-            name="QA Tester",
-            country="Spain",
-            city="Valencia",
-            card="1234-5678-9012"
-        )
+        checkout_page.submit_order(name="QA Tester", country="Spain", city="Valencia", card="1234-5678-9012")
 
     # --- STEP 5: VERIFY & LOGOUT ---
     with allure.step("Step 5: Verify purchase success and logout"):

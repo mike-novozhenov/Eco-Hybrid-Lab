@@ -13,12 +13,14 @@ This project demonstrates a hybrid approach to test automation, integrating UI, 
 
 ### 📊 Performance & Observability
 ![Allure Report Dashboard](docs/graphs.jpg)
-*Summary: 100% Pass Rate | 10 Tests | ~17s Total Duration*
+*Summary: 100% Pass Rate | 10 Tests | **13.5s Total Duration***
 
-The framework is optimized for a balanced execution profile:
-* **API/DB Layer (< 200ms):** Ultra-fast back-end validation. `test_api_to_db_logging` demonstrates seamless integration between requests and SQL layers (107ms API / 1ms DB)
-* **UI Resilience (1s - 2s):** Rapid UI feedback achieved through strategic resource blocking and async event handling
-* **Full E2E Flows (3s - 5s):** Comprehensive business logic validation using the Page Object Model (POM) without compromising stability
+The framework is engineered for high-speed feedback and resource efficiency:
+* **Execution Speed:** 100% Pass Rate for 10 hybrid test cases in **13.5s** (UI + API + DB)
+* **API/DB Layer (< 120ms):** Ultra-fast backend validation with integrated SQL auditing
+* **Dockerized CI/CD (GitHub Actions):** * **Cold Start:** ~2m 10s (full image build)
+    * **Cached Run:** **~45s - 1m** (leveraging `buildx` layer caching)
+* **UI Resilience:** Headless execution and strategic resource blocking ensure stable flows in under **2s** per scenario
 
 <details>
 <summary>🔍 <b>Deep Traceability Example (Click to expand)</b></summary>
@@ -59,18 +61,21 @@ For the **API to DB Sync** scenario, the report captures every internal step wit
 
 
 ### 🛠 Engineering DNA (Best Practices)
-* **Zero-Sleep Policy:** No static timeouts. All asynchronous states are handled via Playwright's native event listeners and smart assertions.
-* **Extreme Performance:** Optimized execution through strategic resource blocking (CSS/Images) and multi-threaded processing.
-* **Deep Observability:** Automated Allure reporting with integrated screenshots, browser trace logs, and SQL query snapshots for every failure.
-* **Clean State Management:** Singleton-based database connectivity with automated transaction teardowns to ensure environment purity.
+* **Zero-Sleep Policy:** No static timeouts. All asynchronous states are handled via Playwright's native event listeners and smart assertions
+* **Extreme Performance:** Optimized execution through strategic resource blocking (CSS/Images) and multi-threaded processing
+* **Deep Observability:** Automated Allure reporting with integrated screenshots, browser trace logs, and SQL query snapshots for every failure
+* **Clean State Management:** Singleton-based database connectivity with automated transaction teardowns to ensure environment purity
+* **Infrastructure as Code:** Fully containerized environment using Docker to eliminate "it works on my machine" issues and ensure 100% parity between Local and CI environments
+* **Intelligent Layer Caching:** Optimized GitHub Actions pipeline that reduces build time by ~70% using persistent storage for Docker layers
 
 ## 🚀 Tech Stack
 * **Language:** Python 3.13
-* **UI Engine:** Playwright (Chromium)
+* **Containerization:** Docker (Multi-stage builds)
+* **CI/CD:** GitHub Actions (with Docker Layer Caching)
+* **UI Engine:** Playwright (Chromium / Headless)
 * **Test Runner:** Pytest
 * **Database:** SQLAlchemy + SQLite3
-* **Reporting:** Allure Reports
-* **Env Management:** Python-dotenv
+* **Reporting:** Allure Reports (Automated GitHub Pages deployment)
 
 
 ## 📂 Project Structure
@@ -84,27 +89,34 @@ For the **API to DB Sync** scenario, the report captures every internal step wit
 └── requirements.txt    # Project dependencies
 ```
 
-## 🚀 Installation & Running
+## 🚀 Quick Start & CI/CD
 
-### 1. Clone the repository
+### Option A: Running with Docker (Recommended)
+The fastest way to run tests without installing Python or Playwright locally.
 ```bash
-git clone [https://github.com/your-username/Eco-Hybrid-Lab.git](https://github.com/your-username/Eco-Hybrid-Lab.git)
-cd Eco-Hybrid-Lab
+# Build the image
+docker build -t hybrid-framework .
+
+# Run tests and mount results to your host machine
+docker run --rm -v "$(pwd)/allure-results:/app/allure-results" hybrid-framework
 ```
-
-### 2. Setup Environment
+### Option B: Local Development
 ```bash
+# Setup environment
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
 playwright install chromium
-```
 
-### 3. Execution & Reporting
-```bash
-# Run all tests and generate results
+# Run tests
 pytest --alluredir=allure-results
-
-# Open interactive Allure report
-allure serve allure-results
 ```
+
+### ⚙️ CI/CD Infrastructure
+The project includes a robust **GitHub Actions** pipeline ([`.github/workflows/tests.yml`](.github/workflows/tests.yml)):
+
+* **Dockerized Execution:** Ensures 100% environment parity between local development and CI environments.
+* **Intelligent Caching:** Utilizes `buildx` and `actions/cache` to store Docker layers, reducing build time by ~70% on subsequent runs.
+* **Auto-Deployment:** Test results and Allure reports are automatically generated and published to **GitHub Pages** after every push to the `main` branch.

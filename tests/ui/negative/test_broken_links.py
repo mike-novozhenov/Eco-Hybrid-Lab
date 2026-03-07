@@ -19,22 +19,21 @@ def test_homepage_broken_links(home_page, api_client):
 
     # Step 2: Extract and filter links
     with allure.step("Collect and filter links from the page"):
-        raw_links = home_page.page.locator("a").evaluate_all(
-            "list => list.map(element => element.href)"
-        )
+        raw_links = home_page.page.locator("a").evaluate_all("list => list.map(element => element.href)")
 
         # Filter for unique HTTP links, excluding anchors and JS stubs
-        unique_links = list(set([
-            l for l in raw_links
-            if l and l.startswith("http") and "#" not in l and "javascript" not in l
-        ]))
+        unique_links = list(
+            set([l for l in raw_links if l and l.startswith("http") and "#" not in l and "javascript" not in l])
+        )
 
         # Logging link count for visibility
         link_count = len(unique_links)
         print(f"\n[INFO] Collected {link_count} unique links for validation")
-        allure.attach(f"Total: {link_count}\n" + "\n".join(unique_links),
-                      name="Checked URLs List",
-                      attachment_type=allure.attachment_type.TEXT)
+        allure.attach(
+            f"Total: {link_count}\n" + "\n".join(unique_links),
+            name="Checked URLs List",
+            attachment_type=allure.attachment_type.TEXT,
+        )
 
     broken_links = []
 

@@ -14,7 +14,7 @@ def test_create_resource_with_invalid_types(api_client):
     payload = {
         "title": ["Not", "a", "string"],  # List instead of String
         "body": 123456789,  # Integer instead of String
-        "userId": "not-an-id"  # String instead of Integer
+        "userId": "not-an-id",  # String instead of Integer
     }
 
     with allure.step("Send POST request with invalid data types"):
@@ -31,7 +31,7 @@ def test_create_resource_with_invalid_types(api_client):
             allure.attach(
                 "SECURITY/QA NOTE: Server accepted malformed data. "
                 "Recommendation: Implement strict server-side schema validation",
-                name="Expert Observation"
+                name="Expert Observation",
             )
 
         assert status in [201, 400, 422], f"Unexpected status code: {status}"

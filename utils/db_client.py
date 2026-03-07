@@ -1,6 +1,7 @@
 import sqlite3
 import allure
 
+
 class DbClient:
     def __init__(self, db_path="test_database.db"):
         self.db_path = db_path

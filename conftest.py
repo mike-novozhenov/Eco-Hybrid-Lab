@@ -11,13 +11,14 @@ from pages.login_page import LoginPage
 from utils.api_client import ApiClient
 from utils.db_client import DbClient
 
-# Загружаем переменные окружения
 load_dotenv()
+
 
 @pytest.fixture(scope="function")
 def api_client():
     """Provides a clean API client instance for each test"""
     return ApiClient()
+
 
 @pytest.fixture
 def product_page(page):
@@ -27,25 +28,30 @@ def product_page(page):
         page.goto(url)
     return ProductPage(page)
 
+
 @pytest.fixture
 def cart_page(page):
     """Provides access to Cart Page actions"""
     return CartPage(page)
+
 
 @pytest.fixture
 def checkout_page(page):
     """Provides access to Checkout Page actions"""
     return CheckoutPage(page)
 
+
 @pytest.fixture
 def home_page(page):
     """Provides access to Home Page actions"""
     return HomePage(page)
 
+
 @pytest.fixture
 def login_page(page):
     """Provides access to Login Page actions"""
     return LoginPage(page)
+
 
 @pytest.fixture(autouse=True)
 def cleanup_after_test(request):
@@ -55,7 +61,6 @@ def cleanup_after_test(request):
     """
     yield
 
-    # Безопасный доступ к фикстуре page через funcargs
     page = request.node.funcargs.get("page")
 
     if page and not page.is_closed():
@@ -65,9 +70,9 @@ def cleanup_after_test(request):
                 page.evaluate("window.localStorage.clear()")
                 page.evaluate("window.sessionStorage.clear()")
         except (RuntimeError, AttributeError):
-            # Ловим только технические ошибки обращения к закрытой странице,
-            # чтобы IDE не ругалась на 'too broad exception'
+            # Catch only technical errors related to closed page access
             pass
+
 
 @pytest.fixture
 def db_client():
@@ -75,14 +80,12 @@ def db_client():
     Database fixture with automated Setup and Teardown.
     """
     client = DbClient("test_database.db")
-    # Создаем таблицу, если её нет.
     # language=SQL
-    client.execute_query(
-        "CREATE TABLE IF NOT EXISTS test_logs (id INTEGER PRIMARY KEY, action TEXT, status TEXT)"
-    )
+    client.execute_query("CREATE TABLE IF NOT EXISTS test_logs (id INTEGER PRIMARY KEY, action TEXT, status TEXT)")
     yield client
     with allure.step("DB Cleanup: Removing test records"):
         client.execute_query("DELETE FROM test_logs")
+
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item):
@@ -94,13 +97,10 @@ def pytest_runtest_makereport(item):
     report = outcome.get_result()
 
     if report.when == "call" and report.failed:
-        # Извлекаем экземпляр страницы из аргументов теста
         page = item.funcargs.get("page")
         if page:
             allure.attach(
-                page.screenshot(full_page=True),
-                name="Failure_Screenshot",
-                attachment_type=allure.attachment_type.PNG
+                page.screenshot(full_page=True), name="Failure_Screenshot", attachment_type=allure.attachment_type.PNG
             )
 
     if report.when == "call":

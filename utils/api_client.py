@@ -1,6 +1,7 @@
 import requests
 import allure
 
+
 class JsonPlaceholderApi:
     """Methods for interacting with the JSONPlaceholder service"""
 
@@ -19,12 +20,10 @@ class JsonPlaceholderApi:
 
 
 class ApiClient:
-    """Main entry point for API services (Wrapper)"""
+    """Main entry point for API services"""
 
     def __init__(self):
-        # Инициализируем сессию для переиспользования соединений
         self.session = requests.Session()
-        # Оставляем поддержку существующего сервиса
         self.json = JsonPlaceholderApi("https://jsonplaceholder.typicode.com")
 
     @allure.step("API: Universal GET request")

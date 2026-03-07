@@ -5,5 +5,4 @@ class HomePage:
 
     def open(self):
         self.page.goto(self.url)
-        # Небольшое ожидание, чтобы страница не была "голой" при сборе ссылок
         self.page.wait_for_load_state("networkidle")

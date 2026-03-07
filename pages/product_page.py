@@ -2,6 +2,7 @@ import allure
 
 from pages.base_page import BasePage
 
+
 class ProductPage(BasePage):
     ADD_TO_CART_BUTTON = "text=Add to cart"
 

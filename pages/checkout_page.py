@@ -2,6 +2,7 @@ import allure
 from playwright.sync_api import TimeoutError
 from pages.base_page import BasePage
 
+
 class CheckoutPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
@@ -29,7 +30,6 @@ class CheckoutPage(BasePage):
         self.month_field.fill("12")
         self.year_field.fill("2026")
         self.purchase_button.click()
-        # Wait for the success checkmark to appear before proceeding
         self.success_message.wait_for(state="visible")
 
     @allure.step("Checkout: Verify and finalize")
@@ -48,17 +48,13 @@ class CheckoutPage(BasePage):
     @allure.step("Checkout: Click 'Purchase' button")
     def click_purchase(self):
         """Click the purchase button without any actionability checks"""
-        # dispatch_event не ждет стабильности элемента и завершения анимаций
         self.purchase_button.dispatch_event("click")
 
     @allure.step("Checkout: Check if modal is still visible")
     def is_modal_visible(self) -> bool:
-        """Verify that the order modal did not close (validation passed)"""
+        """Verify that the order modal did not close"""
         try:
-            # Ждем появления/видимости хотя бы 1 секунду.
-            # Это исключает race condition на быстрых прогонах.
             self.order_modal.wait_for(state="visible", timeout=1000)
             return True
-        except:
-            # Если через секунду модалка скрыта (hidden) — значит она закрылась
+        except (TimeoutError, Exception):
             return False

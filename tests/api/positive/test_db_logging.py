@@ -1,6 +1,7 @@
 import pytest
 import allure
 
+
 @pytest.mark.api
 @pytest.mark.db
 @allure.title("Database: Log API results to SQL table and Verify")
@@ -22,21 +23,15 @@ def test_api_to_db_logging(api_client, db_client):
     # --- STEP 2: SQL INSERT Operation ---
     with allure.step("Step 2: Log action into Database (INSERT)"):
         db_client.execute_query(
-            "INSERT INTO test_logs (action, status) VALUES (?, ?)",
-            (f"Create post: {title}", status_to_log)
+            "INSERT INTO test_logs (action, status) VALUES (?, ?)", (f"Create post: {title}", status_to_log)
         )
 
     # --- STEP 3: SQL SELECT & Validation ---
     with allure.step("Step 3: Verify record in DB (SELECT)"):
-        records = db_client.fetch_all(
-            "SELECT * FROM test_logs WHERE action = ?",
-            (f"Create post: {title}",)
-        )
+        records = db_client.fetch_all("SELECT * FROM test_logs WHERE action = ?", (f"Create post: {title}",))
 
         assert len(records) > 0, f"Error: No records found for title '{title}'"
 
         allure.attach(
-            str(records[-1]),
-            name="Database Verification Result",
-            attachment_type=allure.attachment_type.TEXT
+            str(records[-1]), name="Database Verification Result", attachment_type=allure.attachment_type.TEXT
         )
