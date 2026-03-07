@@ -1,13 +1,13 @@
+import os
 import subprocess
 import sys
-import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TESTS_DIR = os.path.join(BASE_DIR, "tests")
 
 
 def run_commands():
-    pytest_cmd = ["pytest", TESTS_DIR, "--alluredir=allure-results", "--clean-alluredir"]
+    pytest_cmd = ["pytest", "-n", "auto", TESTS_DIR, "--alluredir=allure-results", "--clean-alluredir"]
 
     if "-m" in sys.argv:
         try:
@@ -23,6 +23,9 @@ def run_commands():
             sys.exit(1)
 
     if "--headed" in sys.argv:
+        if "-n" in pytest_cmd:
+            pytest_cmd.remove("-n")
+            pytest_cmd.remove("auto")
         pytest_cmd.extend(["--headed", "--slowmo", "1000"])
 
     print(f"🔥 Executing: {' '.join(pytest_cmd)}")

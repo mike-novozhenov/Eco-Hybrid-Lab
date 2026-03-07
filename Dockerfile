@@ -17,4 +17,4 @@ RUN playwright install chromium
 COPY . .
 
 # Command to run tests and generate reports
-CMD ["pytest", "--alluredir=allure-results"]
+CMD ["pytest", "-n", "auto", "--alluredir=allure-results"]
