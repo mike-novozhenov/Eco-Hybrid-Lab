@@ -1,5 +1,9 @@
 # Eco-Hybrid-Lab: Hybrid Test Automation Framework
 
+### [💡 View the 📊 Interactive Architecture & Test Scenarios](https://mike-novozhenov.github.io/Eco-Hybrid-Lab/architecture.html)
+> **Note:** This report provides a deep dive into the hybrid automation strategy, including performance metrics (API/DB < 200ms) and visual traceability of E2E flows
+
+
 [![Hybrid Tests Execution](https://github.com/mike-novozhenov/Eco-Hybrid-Lab/actions/workflows/tests.yml/badge.svg)](https://github.com/mike-novozhenov/Eco-Hybrid-Lab/actions/workflows/tests.yml)
 [![View Allure Report](https://img.shields.io/badge/Allure%20Report-View-green?style=flat&logo=allure)](https://mike-novozhenov.github.io/Eco-Hybrid-Lab/)
 ---
