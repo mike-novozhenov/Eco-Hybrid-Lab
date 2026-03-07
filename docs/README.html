@@ -72,9 +72,9 @@
             <p><i>Summary: 100% Pass Rate | 10 Tests | ~27s Total Duration</i></p>
 
             <div class="perf-grid">
-                <div class="perf-item"><strong>API/DB Layer (&lt; 1s):</strong> High-speed integration checks using requests and SQL direct access</div>
-                <div class="perf-item"><strong>UI Resilience (2s - 4s):</strong> Rapid UI feedback via resource blocking and native event listeners</div>
-                <div class="perf-item"><strong>Full E2E Flows (8s - 9s):</strong> Stable business logic validation using the POM pattern</div>
+                <div class="perf-item"><strong>API/DB Layer (< 200ms):</strong> High-speed integration checks using requests and SQL direct access</div>
+                <div class="perf-item"><strong>UI Resilience (1s - 2s):</strong> Rapid UI feedback via resource blocking and native event listeners</div>
+                <div class="perf-item"><strong>Full E2E Flows (3s - 5s):</strong> Stable business logic validation using the POM pattern</div>
             </div>
 
             <details>
@@ -82,8 +82,8 @@
                 <br>
                 <p>For the <strong>API to DB Sync</strong> scenario, the report captures every internal step with raw data evidence:</p>
                 <ul>
-                    <li><strong>POST Request:</strong> Resource creation verified in 431ms</li>
-                    <li><strong>DB Logging:</strong> Action recorded via SQLAlchemy in 16ms</li>
+                    <li><strong>POST Request:</strong> Resource creation verified in 107ms</li>
+                    <li><strong>DB Logging:</strong> Action recorded via SQLAlchemy in 1ms</li>
                     <li><strong>Data Audit:</strong> Direct SQL SELECT verifies persistence: <code>(1, 'Create post...', 'Success')</code></li>
                     <li><strong>Auto-Cleanup:</strong> Environment reset via Tear down fixtures automatically</li>
                 </ul>

@@ -1,4 +1,5 @@
 # Eco-Hybrid-Lab: Hybrid Test Automation Framework
+### [💡 View the 📊 Interactive Architecture](https://mike-novozhenov.github.io/Eco-Hybrid-Lab/docs/README.html)
 
 [![Hybrid Tests Execution](https://github.com/mike-novozhenov/Eco-Hybrid-Lab/actions/workflows/tests.yml/badge.svg)](https://github.com/mike-novozhenov/Eco-Hybrid-Lab/actions/workflows/tests.yml)
 [![View Allure Report](https://img.shields.io/badge/Allure%20Report-View-green?style=flat&logo=allure)](https://mike-novozhenov.github.io/Eco-Hybrid-Lab/)
@@ -9,12 +10,12 @@ This project demonstrates a hybrid approach to test automation, integrating UI, 
 
 ### 📊 Performance & Observability
 ![Allure Report Dashboard](docs/graphs.jpg)
-*Summary: 100% Pass Rate | 10 Tests | ~27s Total Duration*
+*Summary: 100% Pass Rate | 10 Tests | ~17s Total Duration*
 
 The framework is optimized for a balanced execution profile:
-* **API/DB Layer (< 1s):** Highly efficient back-end validation. `test_api_to_db_logging` demonstrates seamless integration between requests and SQL layers
-* **UI Resilience (2s - 4s):** Rapid UI feedback achieved through strategic resource blocking and async event handling
-* **Full E2E Flows (8s - 9s):** Comprehensive business logic validation using the Page Object Model (POM) without compromising stability
+* **API/DB Layer (< 200ms):** Ultra-fast back-end validation. `test_api_to_db_logging` demonstrates seamless integration between requests and SQL layers (107ms API / 1ms DB)
+* **UI Resilience (1s - 2s):** Rapid UI feedback achieved through strategic resource blocking and async event handling
+* **Full E2E Flows (3s - 5s):** Comprehensive business logic validation using the Page Object Model (POM) without compromising stability
 
 <details>
 <summary>🔍 <b>Deep Traceability Example (Click to expand)</b></summary>
@@ -22,8 +23,8 @@ The framework is optimized for a balanced execution profile:
 
 For the **API to DB Sync** scenario, the report captures every internal step with raw data evidence:
 
-1. **POST Request:** Resource creation verified in **431ms**
-2. **DB Logging:** Action recorded via SQLAlchemy in **16ms**
+1. **POST Request:** Resource creation verified in **107ms**
+2. **DB Logging:** Action recorded via SQLAlchemy in **1ms**
 3. **Data Audit:** Direct SQL `SELECT` verifies persistence with raw data attachment: `(1, 'Create post...', 'Success')`
 4. **Auto-Cleanup:** Environment is reset via `Tear down` fixtures automatically
 
