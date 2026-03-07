@@ -1,0 +1,53 @@
+ERROR    asyncio:base_events.py:1821 Exception in callback SyncBase._sync.<locals>.<lambda>(<Task finishe...dy handled!')>) at /usr/local/lib/python3.12/dist-packages/playwright/_impl/_sync_base.py:111
+handle: <Handle SyncBase._sync.<locals>.<lambda>(<Task finishe...dy handled!')>) at /usr/local/lib/python3.12/dist-packages/playwright/_impl/_sync_base.py:111>
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_sync_base.py", line 111, in <lambda>
+    task.add_done_callback(lambda _: g_self.switch())
+                                     ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_connection.py", line 444, in _listener_with_error_handler_attached
+    potential_future = listener(params)
+                       ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_browser_context.py", line 166, in <lambda>
+    "dialog", lambda params: self._on_dialog(from_channel(params["dialog"]))
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_browser_context.py", line 683, in _on_dialog
+    has_listeners = page.emit(Page.Events.Dialog, dialog) or has_listeners
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pyee/base.py", line 212, in emit
+    handled = self._call_handlers(event, args, kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pyee/base.py", line 188, in _call_handlers
+    self._emit_run(f, args, kwargs)
+  File "/usr/local/lib/python3.12/dist-packages/pyee/asyncio.py", line 53, in _emit_run
+    self.emit("error", exc)
+  File "/usr/local/lib/python3.12/dist-packages/pyee/base.py", line 215, in emit
+    self._emit_handle_potential_error(event, args[0] if args else None)
+  File "/usr/local/lib/python3.12/dist-packages/pyee/base.py", line 173, in _emit_handle_potential_error
+    raise error
+  File "/usr/local/lib/python3.12/dist-packages/pyee/asyncio.py", line 51, in _emit_run
+    coro: Any = f(*args, **kwargs)
+                ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pyee/base.py", line 242, in g
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_impl_to_api_mapping.py", line 123, in wrapper_func
+    return handler(
+           ^^^^^^^^
+  File "/app/tests/ui/negative/test_checkout_negative.py", line 35, in <lambda>
+    page.once("dialog", lambda d: d.accept())
+                                  ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/playwright/sync_api/_generated.py", line 7215, in accept
+    self._sync(self._impl_obj.accept(promptText=prompt_text))
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_dialog.py", line 51, in accept
+    await self._channel.send("accept", locals_to_params(locals()))
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_connection.py", line 61, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_connection.py", line 528, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Dialog.accept: Cannot accept dialog which is already handled!

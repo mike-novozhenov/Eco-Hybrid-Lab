@@ -1,0 +1,47 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"
+    Test verifies that an alert appears with 'User does not exist.'
+    using dynamic event waiting instead of static timeouts.
+    ","1630","Negative: Error message for non-existent user","tests.ui.negative","Sat Mar 07 12:21:55 UTC 2026","passed","Sat Mar 07 12:21:57 UTC 2026","","test_login_validation","",""
+"
+    Scenario:
+    1. Call the API with invalid ID (triggering 404)
+    2. Check that the logging system records the attempt as 'Failed'
+    3. Verify the status is saved in the DB
+    ","93","Negative: Ensure API errors are logged to DB","tests.api.negative","Sat Mar 07 12:21:53 UTC 2026","passed","Sat Mar 07 12:21:53 UTC 2026","","test_api_db_failures","",""
+"
+    Business Flow:
+    1. Login with valid credentials using LoginPage
+    2. Select product and handle the 'Product added' dialog
+    3. Verify product presence in the CartPage
+    4. Complete checkout via CheckoutPage
+    5. Verify success and perform logout
+    ","6336","E2E: Full Checkout Flow (Login to Purchase)","tests.ui.positive","Sat Mar 07 12:21:54 UTC 2026","passed","Sat Mar 07 12:22:00 UTC 2026","","test_e2e_shopping","",""
+"
+    Standard positive scenario:
+    1. HTTP Status 201
+    2. Header Content-Type is JSON
+    3. Response Body types validation
+    ","98","Positive: Create resource and verify data contract","tests.api.positive","Sat Mar 07 12:21:53 UTC 2026","passed","Sat Mar 07 12:21:53 UTC 2026","","test_backend_api","",""
+"
+    Scenario:
+    1. Call the API to create a resource (POST)
+    2. Save the operation result into SQLite database (INSERT)
+    3. Verify the record exists in the DB (SELECT)
+    4. Cleanup is handled automatically by the db_client fixture (Teardown)
+    ","95","Database: Log API results to SQL table and Verify","tests.api.positive","Sat Mar 07 12:21:53 UTC 2026","passed","Sat Mar 07 12:21:53 UTC 2026","","test_db_logging","",""
+"
+    Negative scenario:
+    - Sending 'None' and invalid types
+    - Verifying server stability and error handling
+    ","105","Negative: Create resource with invalid data types","tests.api.positive","Sat Mar 07 12:21:53 UTC 2026","passed","Sat Mar 07 12:21:53 UTC 2026","","test_backend_api","",""
+"
+    Test Case: Sending data types that violate the API contract.
+    Goal: Verify how the backend handles unexpected input (arrays/numbers instead of strings)
+    ","87","Negative: Handling Malformed Data (Type Mismatch)","tests.api.negative","Sat Mar 07 12:21:53 UTC 2026","passed","Sat Mar 07 12:21:53 UTC 2026","","test_create_resource_negative","",""
+"
+    Test collects all links from the homepage and verifies them
+    using parallel API HEAD requests for maximum speed.
+    ","1519","Negative: High-speed broken links check","tests.ui.negative","Sat Mar 07 12:21:54 UTC 2026","passed","Sat Mar 07 12:21:55 UTC 2026","","test_broken_links","",""
+"","2008","Test Case 1: Pure UI - Add Product to Cart","tests.ui.positive","Sat Mar 07 12:21:54 UTC 2026","passed","Sat Mar 07 12:21:56 UTC 2026","","test_add_to_cart","",""
+"","1506","Negative: Validate empty checkout form (No-Wait Flow)","tests.ui.negative","Sat Mar 07 12:21:54 UTC 2026","passed","Sat Mar 07 12:21:55 UTC 2026","","test_checkout_negative","",""
