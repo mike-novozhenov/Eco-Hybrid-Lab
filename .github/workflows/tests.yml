@@ -42,12 +42,15 @@ jobs:
 
       - name: Run Tests in Docker
         run: |
+          docker rm -f test-container || true
           docker run --name test-container hybrid-framework:latest
         continue-on-error: true
 
       - name: Extract Allure results
         if: always()
-        run: docker cp test-container:/app/allure-results ./allure-results
+        run: |
+          rm -rf ./allure-results
+          docker cp test-container:/app/allure-results ./allure-results || echo "No results found"
 
       - name: Allure Report Action
         uses: simple-elf/allure-report-action@master
@@ -56,12 +59,13 @@ jobs:
           allure_results: allure-results
           allure_history: allure-history
           keep_reports: 20
+          gh_pages: gh-pages
 
       - name: Inject Architecture Report
         if: always()
         run: |
           sudo chmod -R 777 allure-history
-          cp architecture.html allure-history/architecture.html
+          cp architecture.html allure-history/architecture.html || true
 
       - name: Deploy report to Github Pages
         if: always()
