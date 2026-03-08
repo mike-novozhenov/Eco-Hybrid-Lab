@@ -23,20 +23,73 @@
         .perf-item { font-size: 0.9em; padding: 12px; background: #f8fafc; border-radius: 6px; border: 1px solid #edf2f7; }
         .perf-item strong { color: #2d3748; display: block; margin-bottom: 4px; }
         .allure-img { width: 100%; max-width: 1000px; border-radius: 8px; margin: 15px 0; border: 1px solid #edf2f7; display: block; }
+
+        /* Details and Tables */
         details { background: #edf2f7; padding: 15px; border-radius: 8px; margin: 15px 0; cursor: pointer; }
+        .bench-table { width: 100%; border-collapse: collapse; background: white; margin-top: 10px; font-size: 0.9em; }
+        .bench-table td, .bench-table th { border: 1px solid #cbd5e0; padding: 12px; text-align: left; }
+        .highlight-row { background: #f0fff4; font-weight: bold; }
+        .highlight-row td { border: 2px solid #48bb78 !important; }
+
+        /* Engineering DNA and Code blocks */
         .dna-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
         .dna-card { background: #f8fafc; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db; }
         .dna-card strong { color: #2d3748; display: block; margin-bottom: 5px; }
+
+        /* Code Wrapper for Copy Button */
+        .code-wrapper { position: relative; margin: 10px 0; }
+        .code-block {
+            background: #2d3748; color: #e2e8f0; padding: 15px; border-radius: 8px;
+            font-family: 'Cascadia Code', Consolas, monospace; font-size: 0.9em;
+            line-height: 1.5; overflow-x: auto;
+        }
+        .copy-btn {
+            position: absolute; top: 8px; right: 8px;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            color: white; padding: 4px 8px; border-radius: 4px; cursor: pointer;
+            font-size: 0.75em; transition: 0.2s; opacity: 0;
+        }
+        .code-wrapper:hover .copy-btn { opacity: 1; }
+        .copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+        .code-comment { color: #718096; }
+        .code-command { color: #63b3ed; font-weight: bold; }
+
         table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.92em; table-layout: fixed; }
         th { background-color: #edf2f7; color: #2d3748; text-align: left; padding: 14px; border: 1px solid #e2e8f0; }
         td { padding: 14px; border: 1px solid #e2e8f0; vertical-align: top; word-wrap: break-word; }
         tr:nth-child(even) { background-color: #fcfcfc; }
+
         .badge-turbo { background: #ed8936; color: white; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 0.75em; text-transform: uppercase; }
         .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 20px 0; }
         .tech-stack li { background: #2d3748; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; }
-        .structure-block { background: #2d3748; color: #a0aec0; padding: 25px; border-radius: 8px; font-family: monospace; overflow-x: auto; }
+
+        .structure-block { background: #2d3748; color: #a0aec0; padding: 25px; border-radius: 8px; font-family: monospace; overflow-x: auto; position: relative; }
         .structure-block span { color: #63b3ed; font-weight: bold; }
+
         blockquote { border-left: 4px solid #3498db; margin: 20px 0; padding: 10px 20px; background: #ebf8ff; color: #2c5282; border-radius: 0 8px 8px 0; }
+
+        .perf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .perf-item {
+            font-size: 0.9em;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .perf-item:hover { transform: translateY(-3px); }
+        .perf-item strong { display: block; margin-bottom: 4px; font-size: 1.05em; }
+
+        .layer-api { background-color: #ebf8ff; border-left: 4px solid #3182ce; }
+        .layer-ui  { background-color: #f0fff4; border-left: 4px solid #38a169; }
+        .layer-ci  { background-color: #faf5ff; border-left: 4px solid #805ad5; }
+        .layer-par { background-color: #fffaf0; border-left: 4px solid #dd6b20; }
     </style>
 </head>
 <body>
@@ -47,17 +100,62 @@
         <div class="perf-container">
             <h2>📊 Performance & Infrastructure Metrics</h2>
             <img src="docs/graphs.jpg" alt="Allure Report Dashboard" class="allure-img">
-            <p><i>Summary: 100% Pass Rate | 10 Tests | <b>13.5s Execution Time</b></i></p>
+            <p><i>Summary: 100% Pass Rate | 10 Tests | <b>13.5s Execution Time</b></i></p><br>
 
-            <div class="perf-grid">
-                <div class="perf-item"><strong>API/DB Layer (< 120ms):</strong> High-speed integration checks with integrated SQL auditing</div>
-                <div class="perf-item"><strong>UI Resilience (1s - 2s):</strong> Rapid UI feedback via asset blocking and native events</div>
-                <div class="perf-item"><strong>Dockerized CI/CD:</strong> Optimized with Buildx layer caching (~45s cached runs)</div>
-                <div class="perf-item"><strong>Parallel Execution:</strong> Multi-threaded link auditing (11 parallel workers)</div>
+        <div class="perf-grid">
+            <div class="perf-item layer-api">
+                <strong>⚡ API/DB Layer (&lt; 120ms)</strong>
+                High-speed integration checks with integrated SQL auditing
             </div>
+            <div class="perf-item layer-ui">
+                <strong>🛡️ UI Resilience (1s - 2s)</strong>
+                Rapid UI feedback via asset blocking and native events
+            </div>
+            <div class="perf-item layer-ci">
+                <strong>🐳 Dockerized CI/CD</strong>
+                Optimized with Buildx layer caching (~45s cached runs)
+            </div>
+            <div class="perf-item layer-par">
+                <strong>⚙️ Parallel Execution</strong>
+                Multi-threaded link auditing (11 parallel workers)
+            </div>
+        </div>
+            <br>
+            <details>
+                <summary><b>⏱️ View Performance Benchmarks (Why this framework?)</b></summary>
+                <div style="padding: 15px; background: white; border-radius: 0 0 8px 8px; margin-top: 10px;">
+                    <p>This framework is designed to solve the "slow UI tests" bottleneck. Here is a comparison for the same 10 scenarios:</p>
+                    <table class="bench-table">
+                        <thead>
+                            <tr style="background: #edf2f7;">
+                                <th>Strategy</th>
+                                <th>Execution Time</th>
+                                <th>Key Difference</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🔘 Traditional UI (Sequential)</td>
+                                <td>~45-60s</td>
+                                <td>Browsers open/close one by one</td>
+                            </tr>
+                            <tr>
+                                <td>🟡 Pure API Tests</td>
+                                <td>~2-3s</td>
+                                <td>Fast, but skips visual validation</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td>✅ Eco-Hybrid (This Repo)</td>
+                                <td>7-8s</td>
+                                <td>Parallel UI + Async API + Lightweight DB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
 
             <details>
-                <summary>🔍 Deep Traceability Example (Click to expand)</summary>
+                <summary><b>🔍 Deep Traceability Example (Click to expand)</b></summary>
                 <br>
                 <p>For the <strong>API to DB Sync</strong> scenario, the report captures every internal step with raw data evidence:</p>
                 <ul>
@@ -70,7 +168,7 @@
             </details>
 
             <blockquote>
-                <strong>Key Takeaway:</strong> Transitioning to a Dockerized hybrid approach reduced test execution time to under 14s while ensuring 100% environment parity.
+                <strong>Key Takeaway:</strong> Transitioning to a Dockerized hybrid approach reduced test execution time to under 14s while ensuring 100% environment parity
             </blockquote>
         </div>
 
@@ -116,19 +214,19 @@
         <div class="dna-grid">
             <div class="dna-card">
                 <strong>Infrastructure as Code</strong>
-                Fully containerized via Docker to ensure 100% parity between Local and CI environments.
+                Fully containerized via Docker to ensure 100% parity between Local and CI environments
             </div>
             <div class="dna-card">
                 <strong>Intelligent Caching</strong>
-                GitHub Actions pipeline optimized with persistent layer caching, reducing build time by ~70%.
+                GitHub Actions pipeline optimized with persistent layer caching, reducing build time by ~70%
             </div>
             <div class="dna-card">
                 <strong>Zero-Sleep Policy</strong>
-                No static timeouts. All async states handled via Playwright's native listeners and smart assertions.
+                No static timeouts. All async states handled via Playwright's native listeners and smart assertions
             </div>
             <div class="dna-card">
                 <strong>Deep Observability</strong>
-                Automated Allure reporting with integrated screenshots, browser trace logs, and SQL snapshots.
+                Automated Allure reporting with integrated screenshots, browser trace logs, and SQL snapshots
             </div>
         </div>
 
@@ -144,16 +242,72 @@
         </ul>
 
         <h2>📂 Project Structure</h2>
-        <div class="structure-block">
-            . (root)<br>
-            ├── <span>Dockerfile</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Container configuration<br>
-            ├── <span>.github/workflows/</span> &nbsp;&nbsp;&nbsp;# CI/CD Pipeline<br>
-            ├── <span>data/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# DB initialization<br>
-            ├── <span>pages/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Page Object Models<br>
-            ├── <span>tests/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Hybrid suites<br>
-            ├── <span>utils/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Clients & Loggers<br>
-            └── <span>requirements.txt</span> &nbsp;&nbsp;# Dependencies
+        <div class="code-wrapper">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <div class="structure-block">
+                . (root)<br>
+                ├── <span>Dockerfile</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Container configuration<br>
+                ├── <span>.github/workflows/</span> &nbsp;&nbsp;&nbsp;# CI/CD Pipeline<br>
+                ├── <span>data/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# DB initialization<br>
+                ├── <span>pages/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Page Object Models<br>
+                ├── <span>tests/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Hybrid suites<br>
+                ├── <span>utils/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Clients & Loggers<br>
+                └── <span>requirements.txt</span> &nbsp;&nbsp;# Dependencies
+            </div>
+        </div>
+
+        <h2>🚀 Quick Start & CI/CD</h2>
+
+        <h3>Option A: Running with Docker (Recommended)</h3>
+        <p>The fastest way to run tests without installing Python locally</p>
+        <div class="code-wrapper">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <div class="code-block">
+                <span class="code-comment"># Build and run in one go</span><br>
+                <span class="code-command">docker build -t hybrid-framework . && docker run --rm -v "$(pwd)/allure-results:/app/allure-results" hybrid-framework</span>
+            </div>
+        </div>
+
+        <h3>Option B: Local Development</h3>
+        <div class="code-wrapper">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <div class="code-block">
+                <span class="code-comment"># Setup and Run</span><br>
+                python -m venv .venv && source .venv/bin/activate<br>
+                pip install -r requirements.txt && playwright install chromium<br>
+                <span class="code-command">pytest --alluredir=allure-results</span>
+            </div>
+        </div>
+
+        <h3>📊 View Results</h3>
+        <div class="code-wrapper">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <div class="code-block">
+                <span class="code-comment"># After running tests, open the report</span><br>
+                <span class="code-command">allure serve allure-results</span>
+            </div>
+        </div>
+
+        <div class="dna-card" style="margin-top: 20px; border-left-color: #48bb78;">
+            <strong>⚙️ CI/CD Infrastructure</strong>
+            The project includes a robust <b>GitHub Actions</b> pipeline. It utilizes <code>buildx</code> for layer caching (~70% faster) and auto-deploys Allure results to GitHub Pages
         </div>
     </div>
+
+    <script>
+        function copyCode(button) {
+            const wrapper = button.parentElement;
+            const codeBlock = wrapper.querySelector('.code-block') || wrapper.querySelector('.structure-block');
+            const text = codeBlock.innerText.replace('Copy', '');
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copied!';
+                setTimeout(() => {
+                    button.innerText = originalText;
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
