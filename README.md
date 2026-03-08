@@ -23,7 +23,6 @@ The framework is engineered for high-speed feedback and resource efficiency:
 * **UI Resilience:** Headless execution and strategic resource blocking ensure stable flows in under **2s** per scenario
 
 <details>
-<br>
 <summary>🔍 <b>Deep Traceability Example (Click to expand)</b></summary>
 <br>
 
