@@ -23,6 +23,7 @@ The framework is engineered for high-speed feedback and resource efficiency:
 * **UI Resilience:** Headless execution and strategic resource blocking ensure stable flows in under **2s** per scenario
 
 <details>
+<br>
 <summary>🔍 <b>Deep Traceability Example (Click to expand)</b></summary>
 <br>
 
@@ -38,8 +39,8 @@ For the **API to DB Sync** scenario, the report captures every internal step wit
 </p>
 
 </details>
+&nbsp;
 
-> **Key Takeaway:** By utilizing a hybrid approach, 80% of the test suite provides feedback in under 4 seconds, significantly reducing CI/CD pipeline costs
 
 <details>
 <summary><b> ⏱️ View Performance Benchmarks (Why this framework?)</b></summary>
@@ -55,7 +56,9 @@ This framework is designed to solve the "slow UI tests" bottleneck. Here is a co
 
 > **Engineering Note:** We achieve this by offloading heavy data preparation to API/DB layers and running UI checks in parallel via `pytest-xdist`. This ensures maximum coverage with minimum wait time
 
-</details>
+</details><br>
+
+> **Key Takeaway:** By utilizing a hybrid approach, 80% of the test suite provides feedback in under 4 seconds, significantly reducing CI/CD pipeline costs
 ---
 
 ### 🟢 Positive Scenarios (Happy Path)
