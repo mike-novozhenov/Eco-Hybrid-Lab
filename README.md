@@ -38,8 +38,6 @@ For the **API to DB Sync** scenario, the report captures every internal step wit
 </p>
 
 </details>
-&nbsp;
-
 
 <details>
 <summary><b> ⏱️ View Performance Benchmarks (Why this framework?)</b></summary>
