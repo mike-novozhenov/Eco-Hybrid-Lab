@@ -1,35 +1,38 @@
 function toggleTheme() {
-    const html = document.documentElement;
-    const currentTheme = html.getAttribute('data-theme');
+    const body = document.body;
+    const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-    html.setAttribute('data-theme', newTheme);
+    body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
 }
 
 function copyCode(id) {
     const pre = document.getElementById(id);
+    const text = pre.innerText.replace('COPY', '').trim();
+    navigator.clipboard.writeText(text);
+
     const btn = pre.querySelector('.copy-btn');
-
-    // Get text but exclude the button text itself
-    const text = pre.innerText.replace(btn.innerText, '').trim();
-
-    navigator.clipboard.writeText(text).then(() => {
-        const originalText = btn.innerText;
-        btn.innerText = 'COPIED!';
-        setTimeout(() => btn.innerText = originalText, 2000);
-    });
+    const originalText = btn.innerText;
+    btn.innerText = 'COPIED!';
+    setTimeout(() => btn.innerText = originalText, 2000);
 }
 
-// Global click listener for inline commands (.cmd)
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.body.setAttribute('data-theme', savedTheme);
+});
+
 document.addEventListener('click', function(e) {
     if (e.target && e.target.classList.contains('cmd')) {
         const text = e.target.innerText;
 
+        // Копируем в буфер обмена
         navigator.clipboard.writeText(text).then(() => {
+            // Добавляем класс для анимации "Copied!"
             e.target.classList.add('copied');
             setTimeout(() => e.target.classList.remove('copied'), 2000);
-            console.log('Command copied:', text);
+
+            console.log('Copied to clipboard:', text);
         });
     }
 });
