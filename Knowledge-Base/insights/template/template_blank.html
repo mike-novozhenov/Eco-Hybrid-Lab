@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insight — Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<!--    For a new post change 2 strings belo to these:-->
+<!--    <link rel="stylesheet" href="../../insights/template/style.css">-->
+<!--    <script src="../../insights/template/script.js" defer></script>-->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body data-theme="dark">
+
+    <header>
+        <div class="logo">ECO-HYBRID-LAB / INSIGHTS</div>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 Switch Theme</button>
+    </header>
+
+    <article>
+        <span class="post-category">Category — Tag</span>
+        <h1>Post Title Goes Here <i class="rocket-icon">🚀</i></h1>
+
+        <p class="post-lead">
+            A concise <strong>one-sentence summary</strong> of the value this insight provides
+        </p>
+
+        <section class="card">
+            <h2>Section Title</h2>
+            <p><span class="label-accent">▫️ <strong>Tiny</strong>:</span> Actionable detail description goes here</p>
+            <p><span class="label-accent">🚀 <strong>Big</strong>:</span> Massive impact on the project framework</p>
+            <p><span class="label-accent">🛡️ <strong>Security</strong>:</span> How it protects or stabilizes the code</p>
+            <p><span class="label-accent">⚡ <strong>How to run</strong>:</span> <code>pytest --config-check</code></p>
+            <pre id="code-1"><button class="copy-btn" onclick="copyCode('code-1')">COPY</button># Code here
+def hello_lab():
+    pass</pre>
+
+            <br>
+            <p><span class="label-accent">Example: Refactoring Config</span></p>
+            <p>How to move individual flags into a structured table</p>
+
+            <div class="example-grid">
+                <div class="example-block">
+                    <span class="example-label label-before">❌ Before</span>
+<pre># Scattered variables
+pytest_args = "-v"
+log_level = "DEBUG"</pre>
+                </div>
+
+                <div class="example-block">
+                    <span class="example-label label-after">✅ After</span>
+<pre># Centralized in pyproject.toml
+[tool.pytest.ini_options]
+addopts = "-v"
+log_level = "DEBUG"</pre>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <footer>
+        <p>© 2026 Eco-Hybrid-Lab | <a href="https://github.com/mike-novozhenov/Eco-Hybrid-Lab" target="_blank">GitHub</a></p>
+    </footer>
+
+</body>
+</html>
