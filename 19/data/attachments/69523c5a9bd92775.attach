@@ -1,0 +1,1 @@
+SECURITY/QA NOTE: Server accepted malformed data. Recommendation: Implement strict server-side schema validation
