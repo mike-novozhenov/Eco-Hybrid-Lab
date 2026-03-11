@@ -13,8 +13,18 @@
     --comment-color: #ff9d00;
 }
 
-[data-theme="light"] {
-    /* А здесь СВЕТЛЫЕ цвета */
+.dark-theme {
+    --bg: #0d1117;
+    --text-primary: #e6edf3;
+    --text-secondary: #9198a1;
+    --card-bg: #161b22;
+    --accent: #ff007f;
+    --border: #30363d;
+    --mint: #85e89d;
+    --comment-color: #ff9d00;
+}
+
+.light-theme {
     --bg: #ffffff;
     --text-primary: #1a1a1a;
     --text-secondary: #4b5563;
