@@ -2,25 +2,27 @@
    1. VARIABLES & THEMES
    ========================================================================== */
 :root {
-    --bg: #ffffff;
-    --text-primary: #1a1a1a;
-    --text-secondary: #4b5563;
-    --card-bg: #f6f8fa;
-    --accent: #d63384;
-    --accent-rgb: 214, 51, 132;
-    --border: #d0d7de;
-    --mint: #1a7f37;
-}
-
-[data-theme="dark"] {
+    /* Теперь здесь ТЕМНЫЕ цвета по умолчанию */
     --bg: #0d1117;
     --text-primary: #e6edf3;
     --text-secondary: #9198a1;
     --card-bg: #161b22;
     --accent: #ff007f;
-    --accent-rgb: 255, 0, 127;
     --border: #30363d;
     --mint: #85e89d;
+    --comment-color: #ff9d00;
+}
+
+[data-theme="light"] {
+    /* А здесь СВЕТЛЫЕ цвета */
+    --bg: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4b5563;
+    --card-bg: #f6f8fa;
+    --accent: #d63384;
+    --border: #d0d7de;
+    --mint: #1a7f37;
+    --comment-color: #a65d00;
 }
 
 /* ==========================================================================
@@ -225,6 +227,11 @@ code:not(.cmd) {
 [data-theme="dark"] code:not(.cmd) {
     background: rgba(255, 255, 255, 0.1);
     color: #e6edf3;
+}
+
+.yellow-comment {
+    color: #c7a418 !important;
+    font-style: italic !important;
 }
 
 /* ==========================================================================
