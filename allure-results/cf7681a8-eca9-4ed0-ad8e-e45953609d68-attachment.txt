@@ -1,0 +1,1 @@
+WARNING  urllib3.connectionpool:connectionpool.py:327 Connection pool is full, discarding connection: www.demoblaze.com. Connection pool size: 10

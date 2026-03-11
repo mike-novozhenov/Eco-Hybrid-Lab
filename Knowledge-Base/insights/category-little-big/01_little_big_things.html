@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insight — Template</title>
+    <title>Little Big Things: Ruff</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-
+    <script>
+        const theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+    </script>
     <link rel="stylesheet" href="../../insights/template/style.css">
     <script src="../../insights/template/script.js" defer></script>
-
 </head>
+
 <body data-theme="dark">
 
     <header>
@@ -53,18 +56,33 @@
 
             <div class="example-grid">
                 <div class="example-block">
-                    <span class="example-label label-before">❌ BEFORE (Scattered variables):</span>
-<pre># Inconsistent config placement
-pytest_args = "-v"
-log_level = "DEBUG"</pre>
-                </div>
+                    <span class="example-label label-before">❌ BEFORE (The Legacy Chaos):</span>
+                    <pre>import os, sys  <span class="yellow-comment"># Multiple imports on one line</span>
+from datetime import * <span class="yellow-comment"># Wildcard imports</span>
+import pandas as pd
 
-                <div class="example-block">
-                    <span class="example-label label-after">✅ AFTER (Centralized in pyproject.toml):</span>
-<pre># Standardized project configuration
-[tool.pytest.ini_options]
-addopts = "-v"
-log_level = "DEBUG"</pre>
+def calc(x,y):
+    res=x+y  <span class="yellow-comment"># No spaces, poor readability</span>
+    return res
+
+unused_var = "I'm just wasting memory"
+    my_list = ['apple', "banana"] <span class="yellow-comment"># Mixed quotes</span></pre>
+</div>
+
+<div class="example-block">
+    <span class="example-label label-after">✅ AFTER (Ruff's 10ms Magic):</span>
+<pre>import os
+import sys
+from datetime import date
+
+import pandas as pd
+
+def calc(x, y):
+    """Calculates result with proper spacing."""
+    return x + y
+
+my_list = ["apple", "banana"] <span class="yellow-comment"># Standardized & cleaned</span></pre>
+</div>
                 </div>
             </div>
 

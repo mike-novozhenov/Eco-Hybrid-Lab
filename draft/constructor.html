@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insight — Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body data-theme="dark">
+
+    <header>
+        <div class="logo">ECO-HYBRID-LAB / INSIGHTS</div>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 Switch Theme</button>
+    </header>
+
+    <article>
+        <span class="post-category">DevTools — Automation</span>
+        <h1>Python Project Excellence <i class="rocket-icon">🚀</i></h1>
+
+        <p class="post-lead">
+            Сборник компонентов для оформления технических инсайтов: от быстрых линтеров до чистой структуры проекта
+        </p>
+
+        # Spoiler
+
+        <details class="spoiler">
+            <summary>Что Ruff делает «из коробки»?</summary>
+            <div class="spoiler-content">
+                <ul>
+                    <li><strong>Text:</strong> Description</li>
+                </ul>
+                <p>Some description <code>--fix</code></p>
+            </div>
+        </details>
+
+        # Code
+
+        <div class="code-wrapper">
+            <div class="code-header">
+                <span class="code-title">pyproject.toml</span>
+                <button class="copy-btn">Copy</button>
+            </div>
+            <pre><code>[tool.ruff]
+# Базовый набор правил: Pyflakes, pycodestyle, isort
+select = ["E", "F", "I", "B"]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.isort]
+# Группировка своих импортов
+known-first-party = ["your_project_name"]</code></pre>
+</div>
+            # List (IDE Style)
+    <div class="list-title">Diagnostics & Features</div>
+    <ul class="feature-list">
+        <li class="item-success">
+            <strong>Fast:</strong> Написан на Rust, работает в 10-100 раз быстрее аналогов
+        </li>
+        <li class="item-info">
+            <strong>Linter + Formatter:</strong> Заменяет сразу 5-6 старых инструментов
+        </li>
+        <li class="item-warning">
+            <strong>Drop-in:</strong> Полная совместимость с существующими конфигами Flake8
+        </li>
+    </ul>
+
+
+    </article>
+
+    <footer>
+        <p>© 2026 Eco-Hybrid-Lab | <a href="https://github.com/mike-novozhenov/Eco-Hybrid-Lab" target="_blank">GitHub</a></p>
+    </footer>
+
+</body>
+</html>
