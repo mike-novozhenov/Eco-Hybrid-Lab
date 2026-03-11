@@ -1,0 +1,333 @@
+/* ==========================================================================
+   1. VARIABLES & THEMES
+   ========================================================================== */
+:root {
+    --bg: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4b5563;
+    --card-bg: #f6f8fa;
+    --accent: #d63384;
+    --accent-rgb: 214, 51, 132;
+    --border: #d0d7de;
+    --mint: #1a7f37;
+}
+
+[data-theme="dark"] {
+    --bg: #0d1117;
+    --text-primary: #e6edf3;
+    --text-secondary: #9198a1;
+    --card-bg: #161b22;
+    --accent: #ff007f;
+    --accent-rgb: 255, 0, 127;
+    --border: #30363d;
+    --mint: #85e89d;
+}
+
+/* ==========================================================================
+   2. BASE STYLES
+   ========================================================================== */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-primary);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px 40px 20px;
+    line-height: 1.618; /* Golden ratio line height */
+    font-size: 16px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    margin: 0 -20px 40px -20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+footer {
+    text-align: center;
+    margin-top: 80px;
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY (Golden Ratio Scale)
+   ========================================================================== */
+h1 {
+    font-size: 2.618rem; /* 16 * 1.618^2 */
+    font-weight: 700;
+    margin: 0.618em 0;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 1.618rem; /* 16 * 1.618 */
+    font-weight: 700;
+    color: var(--accent);
+    margin: 1.618em 0 0.618em;
+}
+
+h3 {
+    font-size: 1.272rem; /* 16 * sqrt(1.618) */
+    font-weight: 700;
+    margin: 1.618em 0 0.618em;
+}
+
+.logo {
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.post-category {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-top: 20px;
+}
+
+.post-lead {
+    font-size: 1.272rem;
+    padding-left: 20px;
+    border-left: 5px solid var(--accent);
+    margin-bottom: 2.618rem;
+    opacity: 0.9;
+    color: var(--text-primary);
+}
+
+.label-accent {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   4. UI COMPONENTS
+   ========================================================================== */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.theme-toggle {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* ==========================================================================
+   5. CODE & TERMINAL COMMANDS
+   ========================================================================== */
+pre {
+    background: #0d1117;
+    color: #e6edf3;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    border: 1px solid var(--border);
+    line-height: 1.618;
+    overflow-x: auto;
+    margin: 1.618rem 0;
+}
+
+.copy-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: #333;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 4px 8px;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.cmd {
+    position: relative;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: copy;
+    transition: all 0.2s ease;
+    display: inline-block;
+    line-height: 1.4;
+    color: #111827;
+    background: #e5e7eb;
+    border: 1px solid #d1d5db;
+}
+
+[data-theme="dark"] .cmd {
+    color: var(--mint);
+    background: rgba(133, 232, 157, 0.1);
+    border: 1px solid rgba(133, 232, 157, 0.2);
+}
+
+.cmd:hover { background: #d1d5db; }
+[data-theme="dark"] .cmd:hover { background: rgba(133, 232, 157, 0.2); }
+
+.cmd.copied::after {
+    content: "Copied!";
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    border-radius: 4px;
+    animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+code:not(.cmd) {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+    background: rgba(var(--accent-rgb), 0.1);
+    color: var(--accent);
+    padding: 2px 5px;
+    border-radius: 4px;
+    word-break: break-word;
+}
+
+[data-theme="dark"] code:not(.cmd) {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e6edf3;
+}
+
+/* ==========================================================================
+   6. IDE STYLE LISTS
+   ========================================================================== */
+.list-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 1.618rem 0 0.5rem 0;
+    display: inline-block;
+}
+
+.list-title::before {
+    content: "📁";
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1.618rem 0;
+}
+
+.feature-list li {
+    position: relative;
+    padding: 8px 12px 8px 16px;
+    margin-bottom: 8px;
+    border-left: 2px solid var(--mint);
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.feature-list li::before { display: none; }
+.feature-list li strong { color: var(--text-primary); }
+
+.feature-list li:hover {
+    background: rgba(var(--accent-rgb), 0.05);
+    border-left-width: 4px;
+}
+
+.item-success, .item-info, .item-warning {
+    border-left-color: var(--mint) !important;
+}
+
+/* ==========================================================================
+   7. SPOILERS
+   ========================================================================== */
+.spoiler {
+    margin: 1.618rem 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card-bg);
+}
+
+.spoiler summary {
+    padding: 12px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+}
+
+.spoiler summary::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--accent);
+    transition: transform 0.2s ease;
+    transform: rotate(-90deg);
+}
+
+.spoiler[open] summary::before { transform: rotate(0deg); }
+.spoiler[open] { border-color: var(--accent); }
+
+.spoiler-content {
+    padding: 12px 16px 16px 16px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+}
+
+/* ==========================================================================
+   8. COMPARISON GRIDS
+   ========================================================================== */
+.example-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 1.618rem 0;
+}
+
+.example-block { display: flex; flex-direction: column; }
+.example-label { font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; }
+.label-before { color: #ff4d4d; }
+.label-after { color: #2ecc71; }
+
+.example-block pre { margin: 0; }
+.example-block:has(.label-before) pre { border-left: 4px solid #ff4d4d; }
+.example-block:has(.label-after) pre { border-left: 4px solid #2ecc71; }

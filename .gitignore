@@ -38,3 +38,6 @@ allure-report/
 # --- Private Notes & Drafts ---
 NOTES/
 find_cyrillic.py
+
+# Personal drafts
+draft/

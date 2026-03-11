@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insight — Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../insights/template/style.css">
+    <script src="../../insights/template/script.js" defer></script>
+
+</head>
+<body data-theme="dark">
+
+    <header>
+        <div class="logo">ECO-HYBRID-LAB / INSIGHTS</div>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 Switch Theme</button>
+    </header>
+
+    <article>
+        <span class="post-category">Development - Python</span>
+        <h1>The "Little Big" Toolbox: Ruff <i class="rocket-icon">🚀</i></h1>
+
+        <p class="post-lead">
+            One lightning-fast tool to replace your entire linting stack and keep your Python code clean
+        </p>
+
+        <section class="card">
+            <h2>01. Ruff — The Lightning-Fast Linter (Python ONLY)</h2>
+            <p> Let’s start with the <span class="label-accent"><strong>linter</strong></span>, your code’s first line of defense. Think of it as an automatic auditor that scans your text and catches issues before you even hit "Run."</p>
+
+        <div class="list-title">Key Capabilities:</div>
+            <ul class="feature-list">
+                <li class="item-success">
+                    <strong>Bug Detections:</strong> Instantly identifies unused variables, broken logic, or forgotten library imports.
+                </li>
+                <li class="item-info">
+                    <strong>Monitors Style:</strong> Ensures the team sticks to a consistent style. For instance, making sure everyone uses double quotes instead of single quotes or maintaining a proper import order.
+                </li>
+                <li class="item-warning">
+                    <strong>Prevents Mistakes:</strong> The linter can suggest that your code is too complex and should be broken into simpler parts.
+                </li>
+            </ul>
+
+            <p><span class="label-accent">💊 <strong>Little:</strong></span> Zero Friction. Installation takes seconds and requires no configuration to start catching bugs immediately. Auto-fix most issues instantly with one command: <code class="cmd">ruff check --fix</code></p>
+
+            <p><span class="label-accent">🦾 <strong>Big:</strong></span> Complete Control. One tool replaces a whole stack (Flake8, isort, Black, pyupgrade, and pydocstyle), consolidating your entire workflow into a single, clean config. Fewer dependencies mean a cleaner project and zero maintenance headaches.</p>
+            <p><span class="label-accent">🛡️ <strong>Safe & Reliable:</strong></span> Ruff distinguishes between "safe" fixes (like removing extra whitespace) and "dangerous" ones that might affect logic. By default, auto-fix only applies guaranteed safe changes. Backed by Astral, it is built for enterprise-grade stability.</p>
+            <p><span class="label-accent">📥 <strong>Installation:</strong></span> Just run <code class="cmd">pip install ruff</code> once in your environment to get started.</p>
+            <p><span class="label-accent">⚙️ <strong>Zero Config:</strong></span> It works out of the box with sensible defaults. No complex setup required.</p>
+
+                        <p><span class="label-accent">🔄 Example:</span> Refactoring Configuration. Consolidating scattered flags into a structured, modern format.</p>
+
+            <div class="example-grid">
+                <div class="example-block">
+                    <span class="example-label label-before">❌ BEFORE (Scattered variables):</span>
+<pre># Inconsistent config placement
+pytest_args = "-v"
+log_level = "DEBUG"</pre>
+                </div>
+
+                <div class="example-block">
+                    <span class="example-label label-after">✅ AFTER (Centralized in pyproject.toml):</span>
+<pre># Standardized project configuration
+[tool.pytest.ini_options]
+addopts = "-v"
+log_level = "DEBUG"</pre>
+                </div>
+            </div>
+
+        <details class="spoiler">
+            <summary>💡 Inside the Box (Default Behavior)</summary>
+            <div class="spoiler-content">
+                <p><strong>Error Detection (Pyflakes):</strong> Activates core rules to catch critical mistakes:</p>
+                <ul>
+                    <li>Unused imports (e.g., importing <code>s</code> but never using it)</li>
+                    <li>Unused variables (e.g., defining <code>x = 10</code> and never referencing it)</li>
+                    <li>Syntax errors and typos in variable or function names</li>
+                </ul>
+                <p><strong>Style Compliance (pycodestyle):</strong> Ensures your code aligns with PEP 8 standards:</p>
+                <ul>
+                    <li>Line length limits</li>
+                    <li>Extra spaces at the end of lines</li>
+                    <li>Missing blank lines between functions</li>
+                </ul>
+                <p><strong>Smart Suggestions:</strong> Identifies redundant logic, such as duplicate imports or inefficient constructs (e.g., suggesting <code>if x == 10:</code> instead of the technically incorrect <code>if x is 10:</code>).</p>
+            </div>
+        </details>
+
+        <details class="spoiler">
+    <summary>📁 Want to customize?</summary>
+    <div class="spoiler-content">
+        <p>Create a <code>pyproject.toml</code> in your project's root and add the <code>[tool.ruff]</code> section. This allows you to fine-tune the linter to your preferences:</p>
+
+        <ul class="feature-list">
+            <li><strong>Rule Selection:</strong> Specify exactly what to check — from basic errors to <code>isort</code> (import sorting) and <code>flake8</code> rules.</li>
+            <li><strong>Python Version:</strong> Lock the version to prevent Ruff from suggesting features your environment doesn't support yet.</li>
+            <li><strong>Line Length:</strong> Stick to the classic 88 characters (Black style) or expand to 120 for wide monitors.</li>
+        </ul>
+
+        <p>⚡ <strong>My Recommended Config:</strong> Here is a balanced setup I use to keep projects clean and consistent.</p>
+
+        <pre id="code-ruff-config">
+<button class="copy-btn" onclick="copyCode('code-ruff-config')">COPY</button>
+[tool.ruff]
+# Target Python version
+target-version = "py310"
+# Match Black's default line length
+line-length = 88
+
+# F: Pyflakes (errors)
+# E/W: Pycodestyle (style)
+# I: Isort (import sorting)
+# B: Flake8-bugbear (common design issues)
+select = ["F", "E", "W", "I", "B"]
+
+# Keep this to avoid conflicts with the formatter
+ignore = ["E501"]
+
+[tool.ruff.format]
+# Use double quotes (standard Black behavior)
+quote-style = "double"
+# Indent with spaces
+indent-style = "space"
+
+[tool.ruff.isort]
+# Best practice for clean import blocks
+lines-after-imports = 2
+known-first-party = ["my_project"] # Replace with your app name</pre>
+
+    </div>
+</details>
+
+    <details class="spoiler">
+        <summary>🛠️ How to Run: Commands & Results</summary>
+        <div class="spoiler-content">
+            <p>Ruff provides different modes depending on whether you want to just peek at the errors or let the tool handle the cleanup:</p>
+
+            <ul class="feature-list">
+                <li class="item-info">
+                    <strong>Check only:</strong> <code class="cmd">ruff check .</code>
+                    <p>Scans your project and lists issues without changing files. It acts as a report card for your code.</p>
+                </li>
+                <li class="item-warning">
+                    <strong>Preview changes (Diff):</strong> <code class="cmd">ruff check --diff .</code>
+                    <p>Shows a Git-like "diff" highlighting exactly what will be changed. Great for staying in control.</p>
+                </li>
+                <li class="item-success">
+                    <strong>Apply fixes:</strong> <code class="cmd">ruff check --fix .</code>
+                    <p>Automatically repairs everything it can (unused imports, spacing, etc.). Files are updated instantly.</p>
+                </li>
+                <li class="item-info">
+                    <strong>Format code:</strong> <code class="cmd">ruff format .</code>
+                    <p>Re-aligns code structure (indents, quotes) to match the professional "Black" style.</p>
+                </li>
+                <li class="item-success">
+                    <strong>Watch mode:</strong> <code class="cmd">ruff check --watch .</code>
+                    <p>Stays active in the background and re-scans files every time you save. Perfect for hot-fixing.</p>
+                </li>
+            </ul>
+        </div>
+    </details>
+
+
+
+
+
+
+
+
+
+
+        </section>
+    </article>
+
+    <footer>
+        <p>© 2026 Eco-Hybrid-Lab | <a href="https://github.com/mike-novozhenov/Eco-Hybrid-Lab" target="_blank">GitHub</a></p>
+    </footer>
+
+</body>
+</html>
